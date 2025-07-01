@@ -1,6 +1,6 @@
 const formEmail = document.querySelector('input[name="email"]');
 const formMessage = document.querySelector('textarea[name="message"]');
-const formData = { email: "", message: "" };
+let formData = { email: "", message: "" };
 const mainForm = document.querySelector(".feedback-form");
 
 mainForm.addEventListener("input", (event) => {
@@ -17,6 +17,8 @@ if (savedData) {
   formData.message = parsedData.message || "";
   formEmail.value = formData.email;
   formMessage.value = formData.message;
+  
+  
 }
 
 mainForm.addEventListener("submit", (event) => {
@@ -26,8 +28,10 @@ mainForm.addEventListener("submit", (event) => {
     alert("Fill please all fields");
     return;
   }
-
-  localStorage.removeItem("feedback-form-state");
+  console.log(formData);
   mainForm.reset();
+  formData = { email: "", message: "" };
+  localStorage.removeItem("feedback-form-state");
+  
 });
-console.log(localStorage);
+
